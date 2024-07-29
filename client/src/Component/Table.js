@@ -4,11 +4,14 @@ import { FilterSection } from "./filter";
 import { PageFunction } from "./PageFunction";
 import { ItemDetails } from "./ItemDetails";
 import { useExtra } from "../context/ExtraContext";
-import BarChart from "./chart/BarChart";
 
 export const TableSection = () => {
-    const { transactionData } = useTable();
+    const { transactionData,selectedMonth } = useTable();
     const {renderSoldValue, renderDescription} = useExtra();
+
+    const filteredData = selectedMonth 
+        ? transactionData.filter(data => new Date(data.date).toLocaleString('default', { month: 'long' }) === selectedMonth) 
+        : transactionData;
 
     return (
         <>

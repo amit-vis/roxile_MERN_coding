@@ -1,5 +1,4 @@
-import { useTable } from "../context/Table"
-import BarChart from "./chart/BarChart";
+import { useTable } from "../context/Table";
 
 export const ItemDetails = ()=>{
     const {totalSellAmount,totalSoltItem,totalUnSoldItem} = useTable();

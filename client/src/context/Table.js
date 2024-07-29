@@ -14,11 +14,11 @@ export const TableProvider = ({ children }) => {
     const [pageLimit, setPageLimit] = useState(null);
     const [search, setSearch] = useState('');
     const [selectedMonth, setSelectedMonth] = useState('March');
-    const [getMonth, setGetMonth] = useState(null);
-    const [totalSellAmount, setTotalSellAmount] = useState(null)
-    const [totalSoltItem, setTotalSoldItem] = useState(null);
+    const [getMonth, setGetMonth] = useState([]);
+    const [totalSellAmount, setTotalSellAmount] = useState(null);
+    const [totalSoldItem, setTotalSoldItem] = useState(null);
     const [totalUnSoldItem, setTotalUnSoldItem] = useState(null);
-    const [rangeData, setRangeData] = useState(null)
+    const [rangeData, setRangeData] = useState(null);
 
     const fetchTransactionData = async () => {
         try {
@@ -32,69 +32,68 @@ export const TableProvider = ({ children }) => {
                     month: selectedMonth
                 }
             });
-            console.log("here isa the resp", response.data)
+            console.log("here is the resp", response.data);
             setTransactionData(response.data.transactionData);
             setPage(response.data.page);
             setGetMonth(response.data.monthNames);
             setTotalPages(response.data.pageLimit);
-            setPageLimit(response.data.totalPages)
+            setPageLimit(response.data.totalPages);
         } catch (error) {
             console.error("Error fetching transaction data:", error);
         }
     };
 
-    const fetchTotalSoldItem = async ()=>{
+    const fetchTotalSoldItem = async () => {
         try {
-            const response = await axios.get("http://localhost:5000/statics/total-sale-amount",{
-                params:{
+            const response = await axios.get("http://localhost:5000/statics/total-sale-amount", {
+                params: {
                     month: selectedMonth
                 }
-            })
-            setTotalSellAmount(response.data.totalSaleAmount)
-
+            });
+            setTotalSellAmount(response.data.totalSaleAmount);
         } catch (error) {
-            console.log(error.message)
+            console.log(error.message);
         }
-    }
+    };
 
-    const fetchSoldItem = async ()=>{
+    const fetchSoldItem = async () => {
         try {
-            const response = await axios.get("http://localhost:5000/statics/total-sold-item",{
-                params:{
+            const response = await axios.get("http://localhost:5000/statics/total-sold-item", {
+                params: {
                     month: selectedMonth
                 }
-            })
-            setTotalSoldItem(response.data.totalSoldItems)
+            });
+            setTotalSoldItem(response.data.totalSoldItems);
         } catch (error) {
-            console.log(error.message)
+            console.log(error.message);
         }
-    }
+    };
 
-    const fetchNotSoldItem = async ()=>{
+    const fetchNotSoldItem = async () => {
         try {
-            const response = await axios.get("http://localhost:5000/statics/total-notsold-item",{
-                params:{
+            const response = await axios.get("http://localhost:5000/statics/total-notsold-item", {
+                params: {
                     month: selectedMonth
                 }
-            })
-            setTotalUnSoldItem(response.data.totalUnsoldItems)
+            });
+            setTotalUnSoldItem(response.data.totalUnsoldItems);
         } catch (error) {
-            console.log(error.message)
+            console.log(error.message);
         }
-    }
+    };
 
-    const fetchDataRange =  async ()=>{
+    const fetchDataRange = async () => {
         try {
-            const response = await axios.get("http://localhost:5000/statics/price-range-data",{
-                params:{
+            const response = await axios.get("http://localhost:5000/statics/price-range-data", {
+                params: {
                     month: selectedMonth
                 }
-            })
-            setRangeData(response.data.data)
+            });
+            setRangeData(response.data.data);
         } catch (error) {
-            console.log(error.message)
+            console.log(error.message);
         }
-    }
+    };
 
     useEffect(() => {
         fetchTransactionData();
@@ -104,24 +103,26 @@ export const TableProvider = ({ children }) => {
         fetchDataRange();
     }, [page, search, selectedMonth]);
 
-    const handleNextPage = ()=>{
-        if(page<=pageLimit){
-            setPage((prevPage)=>prevPage+1)
+    const handleNextPage = () => {
+        if (page <= pageLimit) {
+            setPage((prevPage) => prevPage + 1);
         }
-    }
-    const handlePrevPage = ()=>{
-        if(page>1){
-            setPage((prevPage)=>prevPage-1)
-        }
-    }
+    };
 
+    const handlePrevPage = () => {
+        if (page > 1) {
+            setPage((prevPage) => prevPage - 1);
+        }
+    };
 
     return (
-        <TableContext.Provider value={{ transactionData, 
-        page, totalPages, search,setSearch, 
-        selectedMonth, setSelectedMonth,getMonth,
-        handleNextPage,handlePrevPage, totalSellAmount, totalSoltItem, totalUnSoldItem,
-         rangeData }}>
+        <TableContext.Provider value={{
+            transactionData,
+            page, totalPages, search, setSearch,
+            selectedMonth, setSelectedMonth, getMonth,
+            handleNextPage, handlePrevPage, totalSellAmount,
+            totalSoldItem, totalUnSoldItem, rangeData
+        }}>
             {children}
         </TableContext.Provider>
     );

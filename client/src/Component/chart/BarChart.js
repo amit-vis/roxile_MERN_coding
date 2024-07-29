@@ -19,7 +19,7 @@ const BarChart = () => {
     svg
       .attr('width', width)
       .attr('height', height)
-      .style('background', '#f4f4f4')
+      .style('background', '#edf6f6')
       .style('margin-top', '50')
       .style('overflow', 'visible');
 
@@ -63,7 +63,7 @@ const BarChart = () => {
       .attr('y', (d) => y(d.count))
       .attr('height', (d) => y(0) - y(d.count))
       .attr('width', x.bandwidth())
-      .attr('fill', 'steelblue');
+      .attr('fill', "green");
 
     // Calculate the average count
     const average = d3.mean(rangeData, d => d.count);
@@ -101,7 +101,7 @@ const BarChart = () => {
   }, [rangeData]);
 
   return (
-    <div>
+    <div style={{paddingBottom:"2%"}}>
       <svg style={{ width: '50%' }} ref={svgRef}></svg>
     </div>
   );
