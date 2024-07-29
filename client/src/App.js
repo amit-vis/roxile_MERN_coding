@@ -10,10 +10,10 @@ function App() {
     <div className="App">
       <TableProvider>
         <ExtraProvider>
-     <TableSection/>
-     <BarChart/>
-     </ExtraProvider>
-     </TableProvider>
+          <TableSection />
+          <BarChart />
+        </ExtraProvider>
+      </TableProvider>
     </div>
   );
 }

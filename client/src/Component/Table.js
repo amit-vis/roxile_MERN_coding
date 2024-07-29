@@ -5,19 +5,20 @@ import { PageFunction } from "./PageFunction";
 import { ItemDetails } from "./ItemDetails";
 import { useExtra } from "../context/ExtraContext";
 
+// this the table where we show our data in the table
 export const TableSection = () => {
-    const { transactionData,selectedMonth } = useTable();
-    const {renderSoldValue, renderDescription} = useExtra();
+    const { transactionData, selectedMonth } = useTable();
+    const { renderSoldValue, renderDescription } = useExtra();
 
-    const filteredData = selectedMonth 
-        ? transactionData.filter(data => new Date(data.date).toLocaleString('default', { month: 'long' }) === selectedMonth) 
+    const filteredData = selectedMonth
+        ? transactionData.filter(data => new Date(data.date).toLocaleString('default', { month: 'long' }) === selectedMonth)
         : transactionData;
 
     return (
         <>
             <FilterSection />
-            <div style={{ marginTop: "1%", marginLeft:"1%", display: "flex", justifyContent: "center", textAlign: "left", fontSize:"0.8rem",fontFamily:"monospace" }}>
-                <table border="4" className="table table-dark mt-2" style={{width:"60%"}}>
+            <div style={{ marginTop: "1%", marginLeft: "1%", display: "flex", justifyContent: "center", textAlign: "left", fontSize: "0.8rem", fontFamily: "monospace" }}>
+                <table border="4" className="table table-dark mt-2" style={{ width: "60%" }}>
                     <thead>
                         <tr>
                             <th scope="col">Id</th>
@@ -45,9 +46,9 @@ export const TableSection = () => {
                         ))}
                     </tbody>
                 </table>
-                <ItemDetails/>
+                <ItemDetails />
             </div>
-            <PageFunction/>
+            <PageFunction />
         </>
     );
 };

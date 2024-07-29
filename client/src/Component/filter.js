@@ -1,6 +1,7 @@
 import React from "react";
 import { useTable } from "../context/Table";
 
+// this is the filter section here code for showing the filter
 export const FilterSection = () => {
     const { getMonth, setSelectedMonth, selectedMonth, search, setSearch } = useTable();
 

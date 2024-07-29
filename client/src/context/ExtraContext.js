@@ -2,18 +2,20 @@ import { createContext, useContext, useState } from "react";
 
 const ExtraContext = createContext();
 
-export const useExtra = ()=>{
+export const useExtra = () => {
     const value = useContext(ExtraContext);
     return value;
 }
 
-export const ExtraProvider = ({children})=>{
+export const ExtraProvider = ({ children }) => {
     const [expandText, setExpandText] = useState({});
 
+    // here show the sold status
     const renderSoldValue = (isSold) => {
         return isSold ? "Yes" : "No";
     };
 
+    // this function for handle the description part of the items
     const toggleDescription = (index) => {
         setExpandText((prevState) => ({
             ...prevState,
@@ -21,11 +23,12 @@ export const ExtraProvider = ({children})=>{
         }));
     };
 
+    // this is the function for show how much line we have to show
     const renderDescription = (description, index) => {
         const words = description.split(' ');
         const isExpanded = expandText[index];
         const truncatedText = words.slice(0, 10).join(' ') + (words.length > 10 ? '...' : '');
-        
+
 
         return (
             <>
@@ -38,8 +41,8 @@ export const ExtraProvider = ({children})=>{
             </>
         );
     };
-    return(
-        <ExtraContext.Provider value={{renderSoldValue, renderDescription}}>
+    return (
+        <ExtraContext.Provider value={{ renderSoldValue, renderDescription }}>
             {children}
         </ExtraContext.Provider>
     )

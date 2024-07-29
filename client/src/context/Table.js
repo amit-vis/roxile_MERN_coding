@@ -20,6 +20,7 @@ export const TableProvider = ({ children }) => {
     const [totalUnSoldItem, setTotalUnSoldItem] = useState(null);
     const [rangeData, setRangeData] = useState(null);
 
+    // fetch all the data from the backend
     const fetchTransactionData = async () => {
         try {
             const response = await axios.get("https://roxile-mern-coding.onrender.com/transaction", {
@@ -43,6 +44,7 @@ export const TableProvider = ({ children }) => {
         }
     };
 
+    // fetch total of the sold item data from backend
     const fetchTotalSoldItem = async () => {
         try {
             const response = await axios.get("https://roxile-mern-coding.onrender.com/statics/total-sale-amount", {
@@ -56,6 +58,7 @@ export const TableProvider = ({ children }) => {
         }
     };
 
+    // here we fetch sold item count from backend
     const fetchSoldItem = async () => {
         try {
             const response = await axios.get("https://roxile-mern-coding.onrender.com/statics/total-sold-item", {
@@ -69,6 +72,7 @@ export const TableProvider = ({ children }) => {
         }
     };
 
+    // here we fetch unsold item count from backend
     const fetchNotSoldItem = async () => {
         try {
             const response = await axios.get("https://roxile-mern-coding.onrender.com/statics/total-notsold-item", {
@@ -82,6 +86,7 @@ export const TableProvider = ({ children }) => {
         }
     };
 
+    // here we fetch range data
     const fetchDataRange = async () => {
         try {
             const response = await axios.get("https://roxile-mern-coding.onrender.com/statics/price-range-data", {
@@ -103,12 +108,14 @@ export const TableProvider = ({ children }) => {
         fetchDataRange();
     }, [page, search, selectedMonth]);
 
+    // toggle the next page
     const handleNextPage = () => {
         if (page <= pageLimit) {
             setPage((prevPage) => prevPage + 1);
         }
     };
 
+    // toggle the previous page
     const handlePrevPage = () => {
         if (page > 1) {
             setPage((prevPage) => prevPage - 1);
