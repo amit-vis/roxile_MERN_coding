@@ -22,7 +22,7 @@ export const TableProvider = ({ children }) => {
 
     const fetchTransactionData = async () => {
         try {
-            const response = await axios.get("http://localhost:5000/transaction", {
+            const response = await axios.get("https://roxile-mern-coding.onrender.com/transaction", {
                 headers: {
                     "Content-Type": "application/json"
                 },
@@ -45,7 +45,7 @@ export const TableProvider = ({ children }) => {
 
     const fetchTotalSoldItem = async () => {
         try {
-            const response = await axios.get("http://localhost:5000/statics/total-sale-amount", {
+            const response = await axios.get("https://roxile-mern-coding.onrender.com/statics/total-sale-amount", {
                 params: {
                     month: selectedMonth
                 }
@@ -58,7 +58,7 @@ export const TableProvider = ({ children }) => {
 
     const fetchSoldItem = async () => {
         try {
-            const response = await axios.get("http://localhost:5000/statics/total-sold-item", {
+            const response = await axios.get("https://roxile-mern-coding.onrender.com/statics/total-sold-item", {
                 params: {
                     month: selectedMonth
                 }
@@ -71,7 +71,7 @@ export const TableProvider = ({ children }) => {
 
     const fetchNotSoldItem = async () => {
         try {
-            const response = await axios.get("http://localhost:5000/statics/total-notsold-item", {
+            const response = await axios.get("https://roxile-mern-coding.onrender.com/statics/total-notsold-item", {
                 params: {
                     month: selectedMonth
                 }
@@ -84,7 +84,7 @@ export const TableProvider = ({ children }) => {
 
     const fetchDataRange = async () => {
         try {
-            const response = await axios.get("http://localhost:5000/statics/price-range-data", {
+            const response = await axios.get("https://roxile-mern-coding.onrender.com/statics/price-range-data", {
                 params: {
                     month: selectedMonth
                 }

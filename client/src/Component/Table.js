@@ -35,7 +35,7 @@ export const TableSection = () => {
                                 <th scope="row">{index + 1}</th>
                                 <td>{data.title}</td>
                                 <td>{renderDescription(data.description, index)}</td>
-                                <td>{data.price}</td>
+                                <td>{(data.price).toFixed(2)}</td>
                                 <td>{data.category}</td>
                                 <td>{renderSoldValue(data.sold)}</td>
                                 <td>

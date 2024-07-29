@@ -9,33 +9,38 @@ const BarChart = () => {
   const monthName = `Bar Chart Stats - ${selectedMonth}`; // Change this to the desired month name
 
   useEffect(() => {
-    if (!rangeData) return; // Exit if rangeData is not available
+    if (!rangeData) return;
 
     const svg = d3.select(svgRef.current);
-    const width = 700;
+    const width = svg.node().getBoundingClientRect().width;
     const height = 300;
-    const margin = { top: 50, right: 30, bottom: 80, left: 40 }; // Increased top margin for month name
+    const margin = { top: 40, right: 30, bottom: 80, left: 40 }; 
 
+    // svg style and size section
     svg
       .attr('width', width)
       .attr('height', height)
       .style('background', '#edf6f6')
-      .style('margin-top', '50')
+      .style('margin-top', '30')
       .style('overflow', 'visible');
 
+      // showing the range in horizontaly from the array
     const x = d3
       .scaleBand()
       .domain(rangeData.map((d) => d.range))
       .range([margin.left, width - margin.right])
-      .padding(0.1);
+      .padding(0.2);
 
+      // showing the count vertically
     const y = d3
       .scaleLinear()
       .domain([0, d3.max(rangeData, (d) => d.count)])
       .nice()
       .range([height - margin.bottom, margin.top]);
 
-    svg.selectAll('*').remove(); // Clear existing content in the SVG
+    svg.selectAll('*').remove(); 
+
+    // showing the range number and given the style here
 
     svg
       .append('g')
@@ -43,9 +48,9 @@ const BarChart = () => {
       .call(d3.axisBottom(x))
       .attr('font-size', '14px')
       .selectAll('text')
-      .attr('transform', 'rotate(-45)')
+      .attr('transform', 'rotate(-40)')
       .attr('dx', '-0.5em')
-      .attr('dy', '0.5em')
+      .attr('dy', '0.1em')
       .style('text-anchor', 'end');
 
     svg
@@ -54,6 +59,7 @@ const BarChart = () => {
       .call(d3.axisLeft(y).ticks(5))
       .attr('font-size', '14px');
 
+      // here is the code for bar section
     svg
       .selectAll('.bar')
       .data(rangeData)
@@ -101,8 +107,8 @@ const BarChart = () => {
   }, [rangeData]);
 
   return (
-    <div style={{paddingBottom:"2%"}}>
-      <svg style={{ width: '50%' }} ref={svgRef}></svg>
+    <div style={{paddingBottom:"1%"}}>
+      <svg style={{ width: '50%', paddingTop:"1%"}} ref={svgRef}></svg>
     </div>
   );
 };
