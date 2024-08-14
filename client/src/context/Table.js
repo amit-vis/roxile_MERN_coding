@@ -61,7 +61,7 @@ export const TableProvider = ({ children }) => {
     // here we fetch sold item count from backend
     const fetchSoldItem = async () => {
         try {
-            const response = await axios.get("http://localhost:5000/statics/total-sold-item", {
+            const response = await axios.get("https://roxile-mern-coding.onrender.com/statics/total-sold-item", {
                 params: {
                     month: selectedMonth
                 }
