@@ -2,7 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const app = express();
 const port = 5000 || process.env.PORT;
-const db = require('./config/mongoose'); // Assuming this connects to MongoDB using Mongoose
+require('./config/mongoose'); // Assuming this connects to MongoDB using Mongoose
 
 // Middleware
 app.use(express.json()); // Built-in body parser for JSON
