@@ -20,6 +20,7 @@ export const TableProvider = ({ children }) => {
     const [totalUnSoldItem, setTotalUnSoldItem] = useState(null);
     const [rangeData, setRangeData] = useState(null);
 
+
     // fetch all the data from the backend
     const fetchTransactionData = async () => {
         try {
@@ -33,7 +34,6 @@ export const TableProvider = ({ children }) => {
                     month: selectedMonth
                 }
             });
-            console.log("here is the resp", response.data);
             setTransactionData(response.data.transactionData);
             setPage(response.data.page);
             setGetMonth(response.data.monthNames);
@@ -61,11 +61,12 @@ export const TableProvider = ({ children }) => {
     // here we fetch sold item count from backend
     const fetchSoldItem = async () => {
         try {
-            const response = await axios.get("https://roxile-mern-coding.onrender.com/statics/total-sold-item", {
+            const response = await axios.get("http://localhost:5000/statics/total-sold-item", {
                 params: {
                     month: selectedMonth
                 }
             });
+            // console.log("here is the sold item", response.data.totalSoldItems)
             setTotalSoldItem(response.data.totalSoldItems);
         } catch (error) {
             console.log(error.message);
@@ -106,7 +107,7 @@ export const TableProvider = ({ children }) => {
         fetchSoldItem();
         fetchNotSoldItem();
         fetchDataRange();
-    }, [page, search, selectedMonth]);
+    }, [page, search, selectedMonth,totalSoldItem,totalUnSoldItem,totalSellAmount]);
 
     // toggle the next page
     const handleNextPage = () => {

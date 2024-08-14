@@ -2,7 +2,7 @@ import { useTable } from "../context/Table";
 
 // this the section where we show total sold unsold item count and and total sold item price
 export const ItemDetails = () => {
-    const { totalSellAmount, totalSoltItem, totalUnSoldItem } = useTable();
+    const { totalSellAmount, totalSoldItem, totalUnSoldItem } = useTable();
     return (
         <>
             <div className="container bg-success" style={{
@@ -19,7 +19,7 @@ export const ItemDetails = () => {
                 <div className="container d-flex justify-content-around mt-2">
                     <h4>Total Sold Items</h4>
                     <h4>-</h4>
-                    <h4>{totalSoltItem}</h4>
+                    <h4>{totalSoldItem}</h4>
                 </div>
                 <div className="container d-flex justify-content-around mt-2">
                     <h4>Total Not Sold Items</h4>
